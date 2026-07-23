@@ -40,7 +40,7 @@
       </div>
     </section>
 
-    <section id="gallery" class="zora-strip" data-zora-carousel>
+    <section id="gallery" class="zora-strip" data-zora-carousel data-stage-filter>
       <div class="container zora-strip-head">
         <div>
           <p class="eyebrow">Proje Galerisi</p>
@@ -51,19 +51,28 @@
           <button class="icon-btn" data-zora-next aria-label="Sonraki görsel"><i data-lucide="arrow-right"></i></button>
         </div>
       </div>
+      <div class="container stage-tabs-wrap">
+        <div class="tabs stage-tabs">
+          <button class="tab active" data-stage-tab="all">Tümü</button>
+          <button class="tab" data-stage-tab="alinan" data-empty-text="Bu proje mevcut bir yapının dönüşümü olduğu için teslim alınan haline ait görseller arşivde bulunmuyor.">Teslim Alınan</button>
+          <button class="tab" data-stage-tab="santiye" data-empty-text="Bu projenin şantiye sürecine ait görselleri henüz paylaşılmadı.">Şantiye Süreci</button>
+          <button class="tab" data-stage-tab="teslim">Teslim Edilen</button>
+        </div>
+      </div>
       <div class="zora-carousel-viewport">
         <div class="zora-carousel-track">
-          <button data-lightbox="assets/zora/zora-kitchen-wide-1200.jpg"><img src="assets/zora/zora-kitchen-wide-820.webp" alt="Ada mutfak genel görünüm"></button>
-          <button data-lightbox="assets/zora/zora-kitchen-island-1200.jpg"><img src="assets/zora/zora-kitchen-island-820.webp" alt="Ada mutfak ve bar alanı"></button>
-          <button data-lightbox="assets/zora/zora-living-1200.jpg"><img src="assets/zora/zora-living-820.webp" alt="Salon yaşam alanı"></button>
-          <button data-lightbox="assets/zora/zora-dining-1200.jpg"><img src="assets/zora/zora-dining-820.webp" alt="Yemek alanı"></button>
-          <button data-lightbox="assets/zora/zora-entrance-console-1200.jpg"><img src="assets/zora/zora-entrance-console-820.webp" alt="Fugalı lambiri ve dresuar"></button>
-          <button data-lightbox="assets/zora/zora-stairs-1200.jpg"><img src="assets/zora/zora-stairs-820.webp" alt="Ahşap merdiven"></button>
-          <button data-lightbox="assets/zora/zora-dressing-island-1200.jpg"><img src="assets/zora/zora-dressing-island-820.webp" alt="Giyinme alanı ve mücevher adası"></button>
-          <button data-lightbox="assets/zora/zora-suite-1200.jpg"><img src="assets/zora/zora-suite-820.webp" alt="Ebeveyn süiti"></button>
-          <button data-lightbox="assets/zora/zora-roof-storage-1200.jpg"><img src="assets/zora/zora-roof-storage-820.webp" alt="Çatı eğimi depolama alanı"></button>
-          <button data-lightbox="assets/zora/zora-hall-1200.jpg"><img src="assets/zora/zora-hall-820.webp" alt="Kemerli koridor geçişi"></button>
+          <button data-lightbox="assets/zora/zora-kitchen-wide-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-kitchen-wide-820.webp" alt="Ada mutfak genel görünüm"></button>
+          <button data-lightbox="assets/zora/zora-kitchen-island-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-kitchen-island-820.webp" alt="Ada mutfak ve bar alanı"></button>
+          <button data-lightbox="assets/zora/zora-living-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-living-820.webp" alt="Salon yaşam alanı"></button>
+          <button data-lightbox="assets/zora/zora-dining-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-dining-820.webp" alt="Yemek alanı"></button>
+          <button data-lightbox="assets/zora/zora-entrance-console-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-entrance-console-820.webp" alt="Fugalı lambiri ve dresuar"></button>
+          <button data-lightbox="assets/zora/zora-stairs-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-stairs-820.webp" alt="Ahşap merdiven"></button>
+          <button data-lightbox="assets/zora/zora-dressing-island-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-dressing-island-820.webp" alt="Giyinme alanı ve mücevher adası"></button>
+          <button data-lightbox="assets/zora/zora-suite-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-suite-820.webp" alt="Ebeveyn süiti"></button>
+          <button data-lightbox="assets/zora/zora-roof-storage-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-roof-storage-820.webp" alt="Çatı eğimi depolama alanı"></button>
+          <button data-lightbox="assets/zora/zora-hall-1200.jpg" data-stage="teslim"><img src="assets/zora/zora-hall-820.webp" alt="Kemerli koridor geçişi"></button>
         </div>
+        <p class="gallery-empty" data-gallery-empty hidden></p>
       </div>
     </section>
 

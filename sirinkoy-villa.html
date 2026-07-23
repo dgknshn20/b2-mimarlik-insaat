@@ -40,7 +40,7 @@
       </div>
     </section>
 
-    <section id="gallery" class="zora-strip" data-zora-carousel>
+    <section id="gallery" class="zora-strip" data-zora-carousel data-stage-filter>
       <div class="container zora-strip-head">
         <div>
           <p class="eyebrow">Proje Galerisi</p>
@@ -51,19 +51,28 @@
           <button class="icon-btn" data-zora-next aria-label="Sonraki görsel"><i data-lucide="arrow-right"></i></button>
         </div>
       </div>
+      <div class="container stage-tabs-wrap">
+        <div class="tabs stage-tabs">
+          <button class="tab active" data-stage-tab="all">Tümü</button>
+          <button class="tab" data-stage-tab="alinan">Teslim Alınan</button>
+          <button class="tab" data-stage-tab="santiye">Şantiye Süreci</button>
+          <button class="tab" data-stage-tab="teslim" data-empty-text="Bu projenin teslim sonrası görselleri eklendiğinde burada yer alacak.">Teslim Edilen</button>
+        </div>
+      </div>
       <div class="zora-carousel-viewport">
         <div class="zora-carousel-track">
-          <button data-lightbox="assets/sirinkoy-villa/living-shell-1200.jpg"><img src="assets/sirinkoy-villa/living-shell-820.webp" alt="Salon ve geniş açıklık hazırlığı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/kitchen-shell-1200.jpg"><img src="assets/sirinkoy-villa/kitchen-shell-820.webp" alt="U planlı mutfak uygulama hazırlığı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/lounge-lines-1200.jpg"><img src="assets/sirinkoy-villa/lounge-lines-820.webp" alt="Salon tesisat ve tavan hatları"></button>
-          <button data-lightbox="assets/sirinkoy-villa/window-infrastructure-1200.jpg"><img src="assets/sirinkoy-villa/window-infrastructure-820.webp" alt="Cephe açıklığı ve altyapı geçişleri"></button>
-          <button data-lightbox="assets/sirinkoy-villa/stair-core-1200.jpg"><img src="assets/sirinkoy-villa/stair-core-820.webp" alt="Merdiven çekirdeği uygulama alanı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/vertical-shaft-1200.jpg"><img src="assets/sirinkoy-villa/vertical-shaft-820.webp" alt="Dikey tesisat şaftı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/cabinetry-1200.jpg"><img src="assets/sirinkoy-villa/cabinetry-820.webp" alt="Mobilya ve depolama hazırlığı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/dressing-storage-1200.jpg"><img src="assets/sirinkoy-villa/dressing-storage-820.webp" alt="Giyinme ve depolama alanı"></button>
-          <button data-lightbox="assets/sirinkoy-villa/open-plan-1200.jpg"><img src="assets/sirinkoy-villa/open-plan-820.webp" alt="Açık plan yaşam alanı uygulaması"></button>
-          <button data-lightbox="assets/sirinkoy-villa/room-prep-1200.jpg"><img src="assets/sirinkoy-villa/room-prep-820.webp" alt="Oda hazırlık ve yüzey çalışmaları"></button>
+          <button data-lightbox="assets/sirinkoy-villa/room-prep-1200.jpg" data-stage="alinan"><img src="assets/sirinkoy-villa/room-prep-820.webp" alt="Teslim alınan oda, yüzey çalışmaları öncesi"></button>
+          <button data-lightbox="assets/sirinkoy-villa/window-infrastructure-1200.jpg" data-stage="alinan"><img src="assets/sirinkoy-villa/window-infrastructure-820.webp" alt="Cephe açıklığı ve altyapı geçişleri"></button>
+          <button data-lightbox="assets/sirinkoy-villa/vertical-shaft-1200.jpg" data-stage="alinan"><img src="assets/sirinkoy-villa/vertical-shaft-820.webp" alt="Dikey tesisat şaftı"></button>
+          <button data-lightbox="assets/sirinkoy-villa/stair-core-1200.jpg" data-stage="alinan"><img src="assets/sirinkoy-villa/stair-core-820.webp" alt="Merdiven çekirdeği, kaba inşaat"></button>
+          <button data-lightbox="assets/sirinkoy-villa/lounge-lines-1200.jpg" data-stage="alinan"><img src="assets/sirinkoy-villa/lounge-lines-820.webp" alt="Salon tesisat ve tavan hatları"></button>
+          <button data-lightbox="assets/sirinkoy-villa/kitchen-shell-1200.jpg" data-stage="santiye"><img src="assets/sirinkoy-villa/kitchen-shell-820.webp" alt="U planlı mutfak uygulama süreci"></button>
+          <button data-lightbox="assets/sirinkoy-villa/living-shell-1200.jpg" data-stage="santiye"><img src="assets/sirinkoy-villa/living-shell-820.webp" alt="Salon uygulama süreci"></button>
+          <button data-lightbox="assets/sirinkoy-villa/cabinetry-1200.jpg" data-stage="santiye"><img src="assets/sirinkoy-villa/cabinetry-820.webp" alt="Mobilya ve depolama uygulaması"></button>
+          <button data-lightbox="assets/sirinkoy-villa/dressing-storage-1200.jpg" data-stage="santiye"><img src="assets/sirinkoy-villa/dressing-storage-820.webp" alt="Giyinme ve depolama alanı uygulaması"></button>
+          <button data-lightbox="assets/sirinkoy-villa/open-plan-1200.jpg" data-stage="santiye"><img src="assets/sirinkoy-villa/open-plan-820.webp" alt="Açık plan yaşam alanı uygulaması"></button>
         </div>
+        <p class="gallery-empty" data-gallery-empty hidden></p>
       </div>
     </section>
 

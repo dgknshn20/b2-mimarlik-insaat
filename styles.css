@@ -587,7 +587,7 @@ sup {
 
 .process-home {
   background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
-  min-height: 188vh;
+  min-height: 165vh;
 }
 
 .process-layout {
@@ -598,7 +598,7 @@ sup {
 }
 
 .process-home .process-layout {
-  min-height: calc(188vh - 184px);
+  min-height: calc(165vh - 184px);
 }
 
 .process-sticky {
@@ -1209,6 +1209,32 @@ sup {
   text-transform: uppercase;
 }
 
+.status-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.status-pill {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+
+.status-pill.active {
+  background: var(--soft);
+  color: #fff;
+}
+
 .project-grid,
 .blog-layout {
   min-width: 0;
@@ -1596,6 +1622,26 @@ sup {
 .zora-carousel-track button:hover img {
   transform: scale(1.045);
   filter: saturate(1.04);
+}
+
+.stage-tabs-wrap {
+  margin-bottom: 24px;
+}
+
+.stage-tabs {
+  margin-bottom: 0;
+  gap: 26px;
+}
+
+.zora-carousel-track button.stage-hidden {
+  display: none;
+}
+
+.gallery-empty {
+  padding: 46px max(24px, calc((100vw - 1180px) / 2));
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 560px;
 }
 
 @keyframes zoraDrift {

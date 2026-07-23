@@ -159,15 +159,20 @@ function initProcessHome() {
     }
   ];
   let activeIndex = -1;
+  let imageChangeToken = 0;
   const setActive = (i, open = false) => {
     if (i === activeIndex && panel?.classList.contains("open") === open) return;
     activeIndex = i;
     steps.forEach((step, idx) => step.classList.toggle("active", idx === i));
     if (image && image.getAttribute("src") !== data[i].img) {
+      const token = ++imageChangeToken;
       image.classList.add("is-changing");
       window.setTimeout(() => {
+        if (token !== imageChangeToken) return;
         image.src = data[i].img;
-        image.onload = () => image.classList.remove("is-changing");
+        image.onload = () => {
+          if (token === imageChangeToken) image.classList.remove("is-changing");
+        };
       }, 160);
     }
     if (panel) {
@@ -209,19 +214,51 @@ function initProjectFilters() {
   if (!grid) return;
   const cards = $$(".project-card[data-category]", grid);
   const tabs = $$("[data-filter]");
-  const setFilter = (filter) => {
-    tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.filter === filter));
+  const label = $("#activeFilterLabel");
+  const select = $("#categoryFilterSelect");
+  const statusPills = $$("[data-status-filter]");
+  const categoryNames = { all: "Tüm Projeler", konut: "Konut Projeleri", villa: "Villa Projeleri", ticari: "Ticari Projeler", "ic-mekan": "İç Mekan Projeleri", kamusal: "Kamusal Projeler" };
+  const statusNames = { tamamlandi: "Tamamlanan", devam: "Devam Eden" };
+  let category = "all";
+  let status = "all";
+  const applyFilters = () => {
+    tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.filter === category));
+    if (select) select.value = category;
+    statusPills.forEach((pill) => pill.classList.toggle("active", pill.dataset.statusFilter === status));
+    const parts = [];
+    if (status !== "all") parts.push(statusNames[status]);
+    parts.push(categoryNames[category] || "Tüm Projeler");
+    if (label) label.textContent = parts.join(" · ");
     cards.forEach((card) => {
-      const ok = filter === "all" || card.dataset.category === filter;
-      card.classList.toggle("hidden-soft", !ok);
+      const categoryOk = category === "all" || card.dataset.category === category;
+      const statusOk = status === "all" || card.dataset.status === status;
+      card.classList.toggle("hidden-soft", !(categoryOk && statusOk));
     });
     const url = new URL(location.href);
-    filter === "all" ? url.searchParams.delete("category") : url.searchParams.set("category", filter);
+    category === "all" ? url.searchParams.delete("category") : url.searchParams.set("category", category);
+    status === "all" ? url.searchParams.delete("status") : url.searchParams.set("status", status);
     history.replaceState(null, "", url);
   };
+  const setFilter = (filter) => {
+    category = filter;
+    applyFilters();
+  };
+  const setStatus = (value) => {
+    status = value;
+    applyFilters();
+  };
   tabs.forEach((tab) => tab.addEventListener("click", () => setFilter(tab.dataset.filter)));
+  statusPills.forEach((pill) => pill.addEventListener("click", () => setStatus(pill.dataset.statusFilter)));
+  $("#applyCategoryFilter")?.addEventListener("click", () => {
+    setFilter(select?.value || "all");
+    $("#filterPanel")?.classList.remove("open");
+    document.body.classList.remove("panel-open");
+  });
+  $("#resetCategoryFilter")?.addEventListener("click", () => setFilter("all"));
   const params = new URLSearchParams(location.search);
-  setFilter(params.get("category") || "all");
+  category = params.get("category") || "all";
+  status = params.get("status") || "all";
+  applyFilters();
 
   const sortBtn = $("#sortBtn");
   const sortMenu = $("#sortMenu");
@@ -375,6 +412,30 @@ function initZoraPortfolio() {
   });
 }
 
+function initGalleryStages() {
+  $$("[data-stage-filter]").forEach((wrap) => {
+    const tabs = $$("[data-stage-tab]", wrap);
+    const items = $$(".zora-carousel-track [data-stage]", wrap);
+    const empty = $("[data-gallery-empty]", wrap);
+    if (!tabs.length) return;
+    const setStage = (btn) => {
+      tabs.forEach((t) => t.classList.toggle("active", t === btn));
+      const stage = btn.dataset.stageTab;
+      let visible = 0;
+      items.forEach((item) => {
+        const match = stage === "all" || item.dataset.stage === stage;
+        item.classList.toggle("stage-hidden", !match);
+        if (match) visible++;
+      });
+      if (empty) {
+        empty.hidden = visible !== 0;
+        empty.textContent = btn.dataset.emptyText || "Bu aşama için görsel bulunmuyor.";
+      }
+    };
+    tabs.forEach((btn) => btn.addEventListener("click", () => setStage(btn)));
+  });
+}
+
 function initParallax() {
   const els = $$("[data-parallax]");
   if (!els.length) return;
@@ -416,5 +477,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initBlog();
   initForms();
   initZoraPortfolio();
+  initGalleryStages();
   initParallax();
 });
