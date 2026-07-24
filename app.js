@@ -132,27 +132,34 @@ function initProcessHome() {
   const image = $(".process-image", wrap);
   const panel = $(".step-panel", wrap);
   const steps = $$(".step-item", wrap);
+  const prev = $("[data-process-prev]", wrap);
+  const next = $("[data-process-next]", wrap);
+  const count = $(".process-image-count", wrap);
   const data = [
     {
-      img: "assets/process-analysis.jpg",
+      img: "assets/process-discovery-site.webp",
+      alt: "Şantiyede ölçüm yapılan keşif ve fizibilite çalışması",
       text: "İşlev programı, kullanıcı profili, bütçe ve zaman hedeflerinin birlikte netleştiği analiz aşaması.",
       time: "3-5 gün",
       output: "İhtiyaç programı, metraj, kapsam raporu"
     },
     {
-      img: "assets/process-design.jpg",
+      img: "assets/process-concept-tv-unit.webp",
+      alt: "TV ünitesi konsept tasarım ve uygulama paftası",
       text: "Yaratıcı fikirler, uygulanabilir konseptler ve mekansal kararlar geliştirilir.",
       time: "2-4 hafta",
       output: "Konsept paftaları, 3D görseller, ilk malzeme kararları"
     },
     {
       img: "assets/process-implementation.jpg",
+      alt: "Projelendirme ve uygulama planlama süreci",
       text: "Detaylı teknik çizimler, uygulama planları, metraj ve saha hazırlıkları tamamlanır.",
       time: "6-16 hafta",
       output: "Uygulama projesi, iş programı, kontrol listeleri"
     },
     {
-      img: "assets/process-delivery.jpg",
+      img: "assets/process-quality-control.webp",
+      alt: "Şantiyede proje üzerinden yapılan kalite kontrol çalışması",
       text: "Şantiye yönetimi, kalite kontrol, proje teslimi ve uzun vadeli destek sağlanır.",
       time: "Proje kapsamına göre",
       output: "Saha raporları, teslim dosyası, satış sonrası destek"
@@ -170,33 +177,22 @@ function initProcessHome() {
       window.setTimeout(() => {
         if (token !== imageChangeToken) return;
         image.src = data[i].img;
+        image.alt = data[i].alt;
         image.onload = () => {
           if (token === imageChangeToken) image.classList.remove("is-changing");
         };
       }, 160);
     }
+    if (count) count.textContent = `${String(i + 1).padStart(2, "0")} / ${String(data.length).padStart(2, "0")}`;
     if (panel) {
       panel.innerHTML = `<h3>${steps[i].querySelector("h3").textContent}</h3><p>${data[i].text}</p><dl><div><dt>Ortalama Süre</dt><dd>${data[i].time}</dd></div><div><dt>Müşteri Ne Alır?</dt><dd>${data[i].output}</dd></div></dl>`;
       panel.classList.toggle("open", open);
     }
   };
-  const updateFromScroll = () => {
-    const start = wrap.offsetTop;
-    const end = start + wrap.offsetHeight - innerHeight;
-    const raw = (scrollY - start + innerHeight * .18) / Math.max(end - start, 1);
-    const progress = Math.min(Math.max(raw, 0), 1);
-    const index = Math.min(steps.length - 1, Math.max(0, Math.floor(progress * steps.length)));
-    setActive(index, panel?.classList.contains("open"));
-  };
-  steps.forEach((step, i) => step.addEventListener("click", () => {
-    const target = wrap.offsetTop + ((wrap.offsetHeight - innerHeight) * (i / Math.max(steps.length - 1, 1)));
-    window.scrollTo({ top: target, behavior: "smooth" });
-    setActive(i, true);
-  }));
-  window.addEventListener("scroll", updateFromScroll, { passive: true });
-  window.addEventListener("resize", updateFromScroll);
+  steps.forEach((step, i) => step.addEventListener("click", () => setActive(i, true)));
+  prev?.addEventListener("click", () => setActive((activeIndex - 1 + data.length) % data.length, true));
+  next?.addEventListener("click", () => setActive((activeIndex + 1) % data.length, true));
   setActive(0);
-  updateFromScroll();
 }
 
 function initSlider() {
