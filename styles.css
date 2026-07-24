@@ -587,7 +587,7 @@ sup {
 
 .process-home {
   background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
-  min-height: 165vh;
+  min-height: 0;
 }
 
 .process-layout {
@@ -598,7 +598,7 @@ sup {
 }
 
 .process-home .process-layout {
-  min-height: calc(165vh - 184px);
+  min-height: 0;
 }
 
 .process-sticky {
@@ -657,6 +657,49 @@ sup {
 
 .process-visual .image-box {
   min-height: clamp(430px, 42vw, 540px);
+}
+
+.process-image-controls {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  color: #fff;
+  background: rgba(22, 22, 20, .78);
+  backdrop-filter: blur(8px);
+}
+
+.process-image-controls button {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  transition: color .25s ease, background .25s ease;
+}
+
+.process-image-controls button:hover,
+.process-image-controls button:focus-visible {
+  color: var(--ink);
+  background: #fff;
+}
+
+.process-image-controls svg {
+  width: 19px;
+  height: 19px;
+}
+
+.process-image-count {
+  min-width: 64px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .14em;
 }
 
 .process-image {
@@ -2331,6 +2374,16 @@ sup {
 
   .process-visual .image-box {
     min-height: clamp(300px, 52vw, 440px);
+  }
+
+  .process-image-controls {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .process-image-controls button {
+    width: 48px;
+    height: 48px;
   }
 
   .project-grid,
